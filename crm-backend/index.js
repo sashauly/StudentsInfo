@@ -49,7 +49,7 @@ function makeClientFromData(data) {
   const errors = [];
 
   function asString(v) {
-    return v && String(v).trim() || '';
+    return (v && String(v).trim()) || '';
   }
 
   // составляем объект, где есть только необходимые поля
@@ -57,16 +57,23 @@ function makeClientFromData(data) {
     name: asString(data.name),
     surname: asString(data.surname),
     lastName: asString(data.lastName),
-    contacts: Array.isArray(data.contacts) ? data.contacts.map((contact) => ({
-      type: asString(contact.type),
-      value: asString(contact.value),
-    })) : [],
+    contacts: Array.isArray(data.contacts)
+      ? data.contacts.map((contact) => ({
+        type: asString(contact.type),
+        value: asString(contact.value),
+      }))
+      : [],
   };
 
   // проверяем, все ли данные корректные и заполняем объект ошибок, которые нужно отдать клиенту
   if (!client.name) errors.push({ field: 'name', message: 'Не указано имя' });
-  if (!client.surname) errors.push({ field: 'surname', message: 'Не указана фамилия' });
-  if (client.contacts.some((contact) => !contact.type || !contact.value)) { errors.push({ field: 'contacts', message: 'Не все добавленные контакты полностью заполнены' }); }
+  if (!client.surname) { errors.push({ field: 'surname', message: 'Не указана фамилия' }); }
+  if (client.contacts.some((contact) => !contact.type || !contact.value)) {
+    errors.push({
+      field: 'contacts',
+      message: 'Не все добавленные контакты полностью заполнены',
+    });
+  }
 
   // если есть ошибки, то бросаем объект ошибки с их списком и 422 статусом
   if (errors.length) throw new ApiError(422, { errors });
@@ -77,7 +84,11 @@ function makeClientFromData(data) {
 /**
  * Возвращает список клиентов из базы данных
  * @param {{ search: string }} [params] - Поисковая строка
- * @returns {{ id: string, name: string, surname: string, lastName: string, contacts: object[] }[]} Массив клиентов
+ * @returns {{ id: string,
+ * name: string,
+ * surname: string,
+ * lastName: string,
+ * contacts: object[] }[]} Массив клиентов
  */
 function getClientList(params = {}) {
   const clients = JSON.parse(readFileSync(DB_FILE) || '[]');
@@ -88,8 +99,7 @@ function getClientList(params = {}) {
       client.surname,
       client.lastName,
       ...client.contacts.map(({ value }) => value),
-    ]
-      .some((str) => str.toLowerCase().includes(search)));
+    ].some((str) => str.toLowerCase().includes(search)));
   }
   return clients;
 }
@@ -98,13 +108,22 @@ function getClientList(params = {}) {
  * Создаёт и сохраняет клиента в базу данных
  * @throws {ApiError} Некорректные данные в аргументе, клиент не создан (statusCode 422)
  * @param {Object} data - Данные из тела запроса
- * @returns {{ id: string, name: string, surname: string, lastName: string, contacts: object[], createdAt: string, updatedAt: string }} Объект клиента
+ * @returns {{ id: string,
+ * name: string,
+ * surname: string,
+ * lastName: string,
+ * contacts: object[],
+ * createdAt: string,
+ * updatedAt: string }} Объект клиента
  */
 function createClient(data) {
   const newItem = makeClientFromData(data);
   newItem.id = Date.now().toString();
-  newItem.createdAt = newItem.updatedAt = new Date().toISOString();
-  writeFileSync(DB_FILE, JSON.stringify([...getClientList(), newItem]), { encoding: 'utf8' });
+  newItem.createdAt = new Date().toISOString();
+  newItem.updatedAt = newItem.createdAt;
+  writeFileSync(DB_FILE, JSON.stringify([...getClientList(), newItem]), {
+    encoding: 'utf8',
+  });
   return newItem;
 }
 
@@ -112,7 +131,13 @@ function createClient(data) {
  * Возвращает объект клиента по его ID
  * @param {string} itemId - ID клиента
  * @throws {ApiError} Клиент с таким ID не найден (statusCode 404)
- * @returns {{ id: string, name: string, surname: string, lastName: string, contacts: object[], createdAt: string, updatedAt: string }} Объект клиента
+ * @returns {{ id: string,
+ * name: string,
+ * surname: string,
+ * lastName: string,
+ * contacts: object[],
+ * createdAt: string,
+ * updatedAt: string }} Объект клиента
  */
 function getClient(itemId) {
   const client = getClientList().find(({ id }) => id === itemId);
@@ -123,16 +148,28 @@ function getClient(itemId) {
 /**
  * Изменяет клиента с указанным ID и сохраняет изменения в базу данных
  * @param {string} itemId - ID изменяемого клиента
- * @param {{ name?: string, surname?: string, lastName?: string, contacts?: object[] }} data - Объект с изменяемыми данными
+ * @param {{ name?: string,
+ * surname?: string,
+ * lastName?: string,
+ * contacts?: object[] }} data - Объект с изменяемыми данными
  * @throws {ApiError} Клиент с таким ID не найден (statusCode 404)
  * @throws {ApiError} Некорректные данные в аргументе (statusCode 422)
- * @returns {{ id: string, name: string, surname: string, lastName: string, contacts: object[], createdAt: string, updatedAt: string }} Объект клиента
+ * @returns {{ id: string,
+ * name: string,
+ * surname: string,
+ * lastName: string,
+ * contacts: object[],
+ * createdAt: string,
+ * updatedAt: string }} Объект клиента
  */
 function updateClient(itemId, data) {
   const clients = getClientList();
   const itemIndex = clients.findIndex(({ id }) => id === itemId);
-  if (itemIndex === -1) throw new ApiError(404, { message: 'Client Not Found' });
-  Object.assign(clients[itemIndex], makeClientFromData({ ...clients[itemIndex], ...data }));
+  if (itemIndex === -1) { throw new ApiError(404, { message: 'Client Not Found' }); }
+  Object.assign(
+    clients[itemIndex],
+    makeClientFromData({ ...clients[itemIndex], ...data }),
+  );
   clients[itemIndex].updatedAt = new Date().toISOString();
   writeFileSync(DB_FILE, JSON.stringify(clients), { encoding: 'utf8' });
   return clients[itemIndex];
@@ -146,7 +183,7 @@ function updateClient(itemId, data) {
 function deleteClient(itemId) {
   const clients = getClientList();
   const itemIndex = clients.findIndex(({ id }) => id === itemId);
-  if (itemIndex === -1) throw new ApiError(404, { message: 'Client Not Found' });
+  if (itemIndex === -1) { throw new ApiError(404, { message: 'Client Not Found' }); }
   clients.splice(itemIndex, 1);
   writeFileSync(DB_FILE, JSON.stringify(clients), { encoding: 'utf8' });
   return {};
@@ -164,7 +201,10 @@ module.exports = createServer(async (req, res) => {
 
   // CORS заголовки ответа для поддержки кросс-доменных запросов из браузера
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, PATCH, DELETE, OPTIONS',
+  );
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   // запрос с методом OPTIONS может отправлять браузер автоматически для проверки CORS заголовков
@@ -213,7 +253,7 @@ module.exports = createServer(async (req, res) => {
         // параметр {id} из URI запроса
         const itemId = uri.substr(1);
         if (req.method === 'GET') return getClient(itemId);
-        if (req.method === 'PATCH') return updateClient(itemId, await drainJson(req));
+        if (req.method === 'PATCH') { return updateClient(itemId, await drainJson(req)); }
         if (req.method === 'DELETE') return deleteClient(itemId);
       }
       return null;
@@ -235,15 +275,27 @@ module.exports = createServer(async (req, res) => {
   // выводим инструкцию, как только сервер запустился...
   .on('listening', () => {
     if (process.env.NODE_ENV !== 'test') {
-      console.log(`Сервер CRM запущен. Вы можете использовать его по адресу http://localhost:${PORT}`);
+      console.log(
+        `Сервер CRM запущен. Вы можете использовать его по адресу http://localhost:${PORT}`,
+      );
       console.log('Нажмите CTRL+C, чтобы остановить сервер');
       console.log('Доступные методы:');
-      console.log(`GET ${URI_PREFIX} - получить список клиентов, в query параметр search можно передать поисковый запрос`);
-      console.log(`POST ${URI_PREFIX} - создать клиента, в теле запроса нужно передать объект { name: string, surname: string, lastName?: string, contacts?: object[] }`);
-      console.log('\tcontacts - массив объектов контактов вида { type: string, value: string }');
+      console.log(
+        `GET ${URI_PREFIX} - получить список клиентов, в query параметр search можно передать поисковый запрос`,
+      );
+      console.log(
+        `POST ${URI_PREFIX} - создать клиента, в теле запроса нужно передать объект { name: string, surname: string, lastName?: string, contacts?: object[] }`,
+      );
+      console.log(
+        '\tcontacts - массив объектов контактов вида { type: string, value: string }',
+      );
       console.log(`GET ${URI_PREFIX}/{id} - получить клиента по его ID`);
-      console.log(`PATCH ${URI_PREFIX}/{id} - изменить клиента с ID, в теле запроса нужно передать объект { name?: string, surname?: string, lastName?: string, contacts?: object[] }`);
-      console.log('\tcontacts - массив объектов контактов вида { type: string, value: string }');
+      console.log(
+        `PATCH ${URI_PREFIX}/{id} - изменить клиента с ID, в теле запроса нужно передать объект { name?: string, surname?: string, lastName?: string, contacts?: object[] }`,
+      );
+      console.log(
+        '\tcontacts - массив объектов контактов вида { type: string, value: string }',
+      );
       console.log(`DELETE ${URI_PREFIX}/{id} - удалить клиента по ID`);
     }
   })
