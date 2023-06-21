@@ -38,7 +38,7 @@ const getOneUser = (req, res) => {
     (error, results) => {
       if (!results.rows.length) {
         console.log('User not found!');
-        return res.status(404).json({ message: 'User not found!' });
+        res.status(404).json({ message: 'User not found!' });
       }
       res.status(200).json(results.rows);
     },
@@ -54,7 +54,7 @@ const updateUser = (req, res) => {
     `UPDATE ${dbname} SET name = $1, birthday = $2, admission = $3, faculty = $4 WHERE id = $5 RETURNING *`,
     [name, birthday, admission, faculty, id],
     (error, result) => {
-      if (!result.rows.length) { return res.status(404).json({ message: 'User not found!' }); }
+      if (!result.rows.length) { res.status(404).json({ message: 'User not found!' }); }
       res.status(200).json({ message: 'User updated!', user: result.rows[0] });
     },
   );
@@ -64,7 +64,7 @@ const deleteUser = (req, res) => {
   const { id } = req.params;
   pool.query(`DELETE FROM ${dbname} WHERE id = $1`, [id], (error, result) => {
     if (!result.rows.length) {
-      return res.status(404).json({ message: 'User not found!' });
+      res.status(404).json({ message: 'User not found!' });
     }
     res.status(200).json({ message: 'User deleted!' });
   });
