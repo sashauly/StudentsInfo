@@ -1,25 +1,28 @@
 const { unlinkSync, writeFileSync } = require('fs');
 
 const Axios = require('axios');
-const { describe, it, expect, beforeAll, beforeEach, afterAll } = require('@jest/globals');
+const {
+  describe, it, expect, beforeAll, beforeEach, afterAll,
+} = require('@jest/globals');
 process.env.DB_FILE = require('path').resolve(process.cwd(), 'test-db.json');
+
 process.env.PORT = 3000;
 process.env.NODE_ENV = 'test';
 
 const axios = Axios.create({
   baseURL: `http://localhost:${process.env.PORT}/api/clients/`,
-  validateStatus: status => status < 500,
+  validateStatus: (status) => status < 500,
   headers: {
     'Content-Type': 'application/json',
-    Accept: 'application/json'
-  }
+    Accept: 'application/json',
+  },
 });
 
 let appServer;
 
 beforeAll(async () => {
   appServer = require('./index');
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     appServer.on('listening', () => resolve());
   });
 });
@@ -27,7 +30,7 @@ beforeAll(async () => {
 afterAll(() => {
   // wipe database
   unlinkSync(process.env.DB_FILE);
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     appServer.close(() => resolve());
   });
 });
@@ -43,9 +46,9 @@ const client = {
   contacts: [
     {
       type: 'Phone',
-      value: '+71234567890'
-    }
-  ]
+      value: '+71234567890',
+    },
+  ],
 };
 const searchValue = 'abcdefGHijKLmnOPqrstuvwxyz';
 const searchQuery = 'ghIJklmnopqr';
@@ -56,7 +59,7 @@ function autoData(from) {
 }
 
 function waitASecond() {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(resolve, 1000);
   });
 }
@@ -70,7 +73,7 @@ describe('Clients API', () => {
   });
 
   it('POST /api/clients should return error descriptions with 422 status on validation error', async () => {
-    const res = await axios.post('', { name: 'Srsly? Only name?'});
+    const res = await axios.post('', { name: 'Srsly? Only name?' });
     expect(res.status).toBe(422);
     expect(Array.isArray(res.data.errors)).toBe(true);
     expect(res.data.errors.length).toBeGreaterThan(0);
@@ -109,20 +112,20 @@ describe('Clients API', () => {
   for (const field of ['name', 'surname', 'lastName']) {
     it(
       `GET /api/clients should search by ${field} substring`,
-      () => checkSearch(field, searchValue, searchQuery)
+      () => checkSearch(field, searchValue, searchQuery),
     );
   }
 
   it(
-    `GET /api/clients should search by any contact value substring`,
+    'GET /api/clients should search by any contact value substring',
     () => checkSearch(
       'contacts',
       [
         { type: 'Whatever', value: '123' },
-        { type: 'Alphabet', value: searchValue }
+        { type: 'Alphabet', value: searchValue },
       ],
-      searchQuery
-    )
+      searchQuery,
+    ),
   );
 
   it('GET /api/clients/{id} should return a client object with 200 status', async () => {
@@ -147,14 +150,18 @@ describe('Clients API', () => {
     await waitASecond();
     const res1 = await axios.patch(original.id, { name, surname });
     expect(res1.status).toBe(200);
-    expect(res1.data).toEqual({ ...client, ...autoData(res1.data), name, surname });
+    expect(res1.data).toEqual({
+      ...client, ...autoData(res1.data), name, surname,
+    });
     expect(res1.data.createdAt === original.createdAt).toBe(true);
     expect(res1.data.updatedAt > original.updatedAt).toBe(true);
 
     await waitASecond();
     const res2 = await axios.patch(original.id, { contacts });
     expect(res2.status).toBe(200);
-    expect(res2.data).toEqual({ ...client, ...autoData(res2.data), name, surname, contacts });
+    expect(res2.data).toEqual({
+      ...client, ...autoData(res2.data), name, surname, contacts,
+    });
     expect(res2.data.createdAt === original.createdAt).toBe(true);
     expect(res2.data.updatedAt > res1.data.updatedAt).toBe(true);
   });
