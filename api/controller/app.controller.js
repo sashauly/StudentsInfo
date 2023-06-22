@@ -20,17 +20,17 @@ const createUser = (req, res) => {
   );
 };
 
-const getUsers = (req, res) => {
+const getUsers = (req, res, next) => {
   pool.query(
     `SELECT * FROM ${dbname}`,
     (error, results) => {
-      if (error) throw error;
+      if (error) next(error);
       res.status(200).json(results.rows);
     },
   );
 };
 
-const getOneUser = (req, res) => {
+const getOneUser = (req, res, next) => {
   const { id } = req.params;
   pool.query(
     `SELECT * FROM ${dbname} WHERE id = $1`,
@@ -39,6 +39,7 @@ const getOneUser = (req, res) => {
       if (!results.rows.length) {
         console.log('User not found!');
         res.status(404).json({ message: 'User not found!' });
+        next(error);
       }
       res.status(200).json(results.rows);
     },
