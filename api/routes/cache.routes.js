@@ -5,6 +5,11 @@ const cache = new NodeCache();
 export default (duration) => (req, res, next) => {
   if (req.method !== 'GET') {
     console.log('Cannot cache non-GET methods!');
+    // Clear cache on POST, PUT, DELETE of the same route
+    if (cache.has(req.originalUrl)) {
+      console.log('Cache cleared');
+      cache.del(req.originalUrl);
+    }
     return next();
   }
   // check if key exists in cache

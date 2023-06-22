@@ -61,11 +61,12 @@ const updateUser = (req, res) => {
   );
 };
 
-const deleteUser = (req, res) => {
+const deleteUser = (req, res, next) => {
   const { id } = req.params;
   pool.query(`DELETE FROM ${dbname} WHERE id = $1`, [id], (error, result) => {
-    if (!result.rows.length) {
+    if (result.rows.length) {
       res.status(404).json({ message: 'User not found!' });
+      next(error);
     }
     res.status(200).json({ message: 'User deleted!' });
   });
