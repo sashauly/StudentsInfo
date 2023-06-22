@@ -4,17 +4,17 @@ const dbname = 'students_info';
 
 const createUser = (req, res) => {
   const {
-    name, birthday, admission, faculty,
+    firstname, lastname, patronimic, birthday, admission, faculty,
   } = req.body;
   pool.query(
-    `INSERT INTO ${dbname} (name, birthday, admission, faculty) values ($1, $2, $3, $4) RETURNING * `,
-    [name, birthday, admission, faculty],
+    `INSERT INTO ${dbname} (firstname, lastname, patronimic, birthday, admission, faculty) values ($1, $2, $3, $4, $5, $6) RETURNING * `,
+    [firstname, lastname, patronimic, birthday, admission, faculty],
     (error, result) => {
       if (error) throw error;
       console.log('Create User');
       res.status(201).json({
         message: 'User created successfully!',
-        user: result,
+        user: result.rows,
       });
     },
   );
@@ -49,11 +49,11 @@ const getOneUser = (req, res, next) => {
 const updateUser = (req, res) => {
   const { id } = req.params;
   const {
-    name, birthday, admission, faculty,
+    firstname, lastname, patronimic, birthday, admission, faculty,
   } = req.body;
   pool.query(
-    `UPDATE ${dbname} SET name = $1, birthday = $2, admission = $3, faculty = $4 WHERE id = $5 RETURNING *`,
-    [name, birthday, admission, faculty, id],
+    `UPDATE ${dbname} SET firstname = $1, lastname = $2, patronimic = $3, birthday = $4, admission = $5, faculty = $6 WHERE id = $7 RETURNING *`,
+    [firstname, lastname, patronimic, birthday, admission, faculty, id],
     (error, result) => {
       if (!result.rows.length) { res.status(404).json({ message: 'User not found!' }); }
       res.status(200).json({ message: 'User updated!', user: result.rows[0] });

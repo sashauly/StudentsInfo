@@ -1,1408 +1,1609 @@
-DROP TABLE IF EXISTS students_info;
 create table students_info (
-	id SERIAL PRIMARY KEY,
-	name VARCHAR(50),
-	birthday DATE,
-	admission DATE,
-	faculty VARCHAR(50)
+  id SERIAL PRIMARY KEY,
+  firstname VARCHAR(50),
+  lastname VARCHAR(50),
+  patronimic VARCHAR(50),
+  birthday DATE,
+  admission DATE,
+  faculty VARCHAR(255)
 );
 insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		1,
-		'Hildagard Glaze',
-		'1905-07-10 08:17:47',
-		'2010-05-14 22:51:37',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		2,
-		'Naoma Wylam',
-		'1906-07-31 21:51:21',
-		'2013-05-06 08:46:22',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		3,
-		'Anestassia Carwithim',
-		'2013-04-04 03:02:20',
-		'2006-04-01 01:07:12',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		4,
-		'Broddy Humbatch',
-		'1973-10-06 12:45:00',
-		'2015-11-26 17:35:34',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		5,
-		'Daryle Tavinor',
-		'1906-09-18 01:19:46',
-		'2002-03-29 19:10:40',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		6,
-		'Ginelle Golborne',
-		'2006-06-19 16:58:14',
-		'2014-03-10 03:52:55',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		7,
-		'Marion Rottery',
-		'1924-01-14 18:57:15',
-		'2002-12-06 20:52:02',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		8,
-		'Morris Crosetto',
-		'1958-02-16 19:15:47',
-		'2013-10-26 19:25:02',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		9,
-		'Carita Eldredge',
-		'1928-09-24 00:54:01',
-		'2000-12-24 11:24:50',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		10,
-		'Catharine Scobie',
-		'1987-05-16 06:15:03',
-		'2006-09-13 07:55:37',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		11,
-		'Jaimie Spridgen',
-		'1928-07-07 19:31:05',
-		'2008-07-18 15:19:48',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		12,
-		'Vaughan Ankrett',
-		'1960-01-02 00:49:49',
-		'2015-12-04 17:41:22',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		13,
-		'Bondon Courteney',
-		'2021-10-13 21:42:21',
-		'2016-07-11 23:48:51',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		14,
-		'Maurizia Tejada',
-		'1947-11-11 16:36:39',
-		'2016-04-24 11:32:15',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		15,
-		'Jandy McKimmey',
-		'2015-06-29 14:38:17',
-		'2007-03-18 18:31:34',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		16,
-		'Rockwell Barlass',
-		'2016-03-18 15:45:21',
-		'2010-12-10 04:31:35',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		17,
-		'Ludwig Klampt',
-		'1916-01-26 14:33:20',
-		'2000-11-26 04:33:04',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		18,
-		'Malvina Sargood',
-		'1906-06-27 08:47:13',
-		'2018-08-29 02:52:01',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		19,
-		'Phelia Blaske',
-		'1966-02-07 11:44:36',
-		'2015-01-03 00:34:43',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		20,
-		'Pansie Huyge',
-		'1992-07-11 04:02:42',
-		'2009-12-04 08:04:16',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		21,
-		'Viviana Bryden',
-		'1949-04-18 04:07:51',
-		'2020-01-08 12:34:28',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		22,
-		'Trish Tinmouth',
-		'2004-08-15 05:56:19',
-		'2011-03-27 16:40:22',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		23,
-		'Petunia Deane',
-		'1958-10-02 05:38:12',
-		'2008-04-02 01:51:19',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		24,
-		'Brandtr Aburrow',
-		'1922-09-20 05:11:24',
-		'2006-02-01 14:42:08',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		25,
-		'Iolanthe Warrilow',
-		'1902-05-25 12:59:04',
-		'2021-06-27 09:41:47',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		26,
-		'Jenn Crady',
-		'1901-06-03 02:18:32',
-		'2016-11-17 12:27:11',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		27,
-		'Emlen Godridge',
-		'2010-03-07 03:58:09',
-		'2021-02-19 01:47:11',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		28,
-		'Rose Brent',
-		'1914-04-15 23:03:49',
-		'2002-06-25 18:15:34',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		29,
-		'Adena Ivan',
-		'1925-02-09 12:55:28',
-		'2007-07-10 18:56:12',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		30,
-		'Bogey Lyddyard',
-		'1924-08-03 23:17:59',
-		'2006-02-18 21:47:57',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		31,
-		'Enoch Kippling',
-		'1970-10-07 07:45:42',
-		'2013-12-09 22:32:48',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		32,
-		'Celestia Yerrington',
-		'1909-05-18 09:32:24',
-		'2014-04-29 10:30:39',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		33,
-		'Ethel Coppard',
-		'1948-09-13 08:36:42',
-		'2003-10-27 08:03:32',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		34,
-		'Guglielmo Irvin',
-		'2021-12-01 11:03:58',
-		'2003-10-15 02:30:33',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		35,
-		'Hardy Hounsom',
-		'2021-05-21 20:15:24',
-		'2007-01-28 10:49:23',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		36,
-		'Sigvard Vasyukov',
-		'1923-04-07 10:38:08',
-		'2015-09-03 03:07:42',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		37,
-		'Lancelot Vossing',
-		'1927-10-16 11:29:28',
-		'2000-01-05 04:23:26',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		38,
-		'Chadd O''Keaveny',
-		'2010-07-27 11:08:55',
-		'2019-02-02 09:37:34',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		39,
-		'Gilbertina Powelee',
-		'1918-09-18 14:31:36',
-		'2012-09-19 17:44:32',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		40,
-		'Vivian Drinnan',
-		'1933-02-08 00:18:42',
-		'2012-06-23 07:52:35',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		41,
-		'Willdon Ewer',
-		'2021-12-09 00:44:48',
-		'2013-12-13 05:42:53',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		42,
-		'Janaye Huge',
-		'1942-05-13 15:00:12',
-		'2003-12-03 18:15:28',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		43,
-		'Hagan Hiscocks',
-		'1943-12-30 19:34:19',
-		'2017-03-02 19:40:12',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		44,
-		'Cissy Wynett',
-		'1991-03-18 01:45:00',
-		'2017-07-17 20:33:19',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		45,
-		'Gussy Lamba',
-		'2020-02-12 14:24:39',
-		'2008-02-05 11:31:39',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		46,
-		'Etienne Vigours',
-		'1904-05-10 09:31:49',
-		'2007-03-15 08:42:12',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		47,
-		'Courtnay Adamsky',
-		'1926-08-15 17:27:04',
-		'2000-07-10 06:47:12',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		48,
-		'Barb Ruscoe',
-		'2020-01-20 04:39:23',
-		'2012-01-23 18:54:09',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		49,
-		'Bee Amer',
-		'1941-03-14 08:40:12',
-		'2020-06-18 07:55:37',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		50,
-		'Garrett Rothera',
-		'1966-11-25 08:37:58',
-		'2019-10-14 19:32:48',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		51,
-		'Reed Januszewicz',
-		'1932-09-08 23:52:24',
-		'2000-12-31 13:33:39',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		52,
-		'Torie Sprott',
-		'1987-08-30 04:16:37',
-		'2002-07-02 19:46:20',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		53,
-		'Nalani Traite',
-		'1932-10-05 12:08:10',
-		'2008-02-27 09:19:30',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		54,
-		'Alf Petty',
-		'1951-06-13 02:26:18',
-		'2017-08-04 00:30:19',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		55,
-		'Sharity Fortie',
-		'1958-07-18 20:14:29',
-		'2013-11-18 02:51:35',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		56,
-		'Andria Wimpress',
-		'1974-11-26 14:15:47',
-		'2013-04-03 03:53:30',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		57,
-		'Albertina Beahan',
-		'1976-07-13 16:24:14',
-		'2008-10-12 02:32:23',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		58,
-		'Hirsch Harradence',
-		'1923-06-13 22:44:05',
-		'2010-06-29 06:33:36',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		59,
-		'Siegfried Harden',
-		'2012-12-29 08:08:12',
-		'2012-01-22 09:33:10',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		60,
-		'Jeremiah Haburne',
-		'1974-02-27 17:02:45',
-		'2020-05-08 07:51:47',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		61,
-		'Torr Landy',
-		'2008-03-07 22:22:53',
-		'2015-11-28 12:02:52',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		62,
-		'Helen-elizabeth Tonsley',
-		'1967-08-26 08:43:29',
-		'2004-08-18 02:32:35',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		63,
-		'Alfred Antalffy',
-		'1908-07-27 12:25:07',
-		'2006-07-16 15:46:25',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		64,
-		'Eva Fenby',
-		'2014-06-02 13:02:40',
-		'2022-11-09 17:57:10',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		65,
-		'Broderick Crumpe',
-		'2008-05-27 00:44:53',
-		'2015-12-21 10:18:50',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		66,
-		'Brandais Alcide',
-		'1955-10-14 02:22:19',
-		'2011-12-01 10:05:22',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		67,
-		'Dilly Milroy',
-		'2003-01-05 10:57:09',
-		'2022-04-07 15:08:02',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		68,
-		'Corliss Ludwig',
-		'1990-02-08 19:56:09',
-		'2011-07-18 09:34:50',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		69,
-		'Gwenette Millichap',
-		'1908-07-03 11:19:43',
-		'2003-02-01 06:24:17',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		70,
-		'Muriel Adlard',
-		'1991-06-26 12:14:11',
-		'2020-04-25 01:33:20',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		71,
-		'Delainey Jackes',
-		'1971-06-09 14:27:30',
-		'2013-07-11 13:28:46',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		72,
-		'Gloriana Woodham',
-		'1974-08-23 12:16:38',
-		'2018-02-21 04:56:04',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		73,
-		'Kalindi Vigar',
-		'1995-07-21 09:56:42',
-		'2015-03-09 08:16:23',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		74,
-		'Camilla Naper',
-		'2009-11-09 12:00:25',
-		'2021-07-13 05:07:37',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		75,
-		'Mikey Yedall',
-		'2003-06-18 14:08:13',
-		'2021-06-13 16:05:11',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		76,
-		'Clo Howles',
-		'1907-06-11 08:19:29',
-		'2012-01-30 01:23:02',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		77,
-		'Brandy Spalding',
-		'2019-02-05 18:44:44',
-		'2004-12-28 12:46:59',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		78,
-		'Muffin Lamblot',
-		'1977-03-26 17:34:13',
-		'2020-01-22 02:46:14',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		79,
-		'Hesther Dregan',
-		'1985-05-14 09:03:25',
-		'2009-02-15 07:26:42',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		80,
-		'Bibi McMearty',
-		'1981-08-08 17:20:02',
-		'2001-10-11 02:20:25',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		81,
-		'Justis Stoggell',
-		'2003-03-18 18:11:16',
-		'2020-03-23 22:38:45',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		82,
-		'Sallee Churm',
-		'1921-02-27 01:24:52',
-		'2016-07-07 12:49:52',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		83,
-		'Anette Airds',
-		'1967-12-10 17:39:59',
-		'2003-02-06 07:19:27',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		84,
-		'Trenna Hasted',
-		'1978-09-24 17:45:00',
-		'2021-04-13 23:20:52',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		85,
-		'Wayne Rotherforth',
-		'1977-02-21 03:06:39',
-		'2013-09-05 14:35:26',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		86,
-		'Wilbur Sneesby',
-		'2000-04-10 16:20:21',
-		'2004-09-24 01:32:10',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		87,
-		'Pace Grunnell',
-		'1905-08-11 12:36:34',
-		'2009-01-19 14:17:03',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		88,
-		'Colin Embra',
-		'1900-03-08 16:42:57',
-		'2006-03-30 12:50:35',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		89,
-		'Iormina Treadaway',
-		'1936-06-22 05:51:54',
-		'2004-08-19 02:13:45',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		90,
-		'Zorah Wasbrough',
-		'1924-07-09 15:05:20',
-		'2016-10-10 10:15:42',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		91,
-		'Codie Hallstone',
-		'1951-04-06 20:59:54',
-		'2009-04-01 10:45:21',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		92,
-		'Nate Devany',
-		'1912-04-04 08:10:22',
-		'2002-01-29 10:41:57',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		93,
-		'Stanislas Imore',
-		'1986-02-06 03:24:30',
-		'2019-02-06 09:40:43',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		94,
-		'Homere Nayshe',
-		'1972-03-03 14:33:38',
-		'2012-03-03 14:53:06',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		95,
-		'Heriberto Matschuk',
-		'1979-01-10 09:16:01',
-		'2023-03-16 21:08:57',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		96,
-		'Imelda Wilkie',
-		'1916-12-06 08:08:28',
-		'2002-10-17 09:52:34',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		97,
-		'Davon Winpenny',
-		'2007-04-13 13:33:59',
-		'2000-07-02 11:40:24',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		98,
-		'Blakelee Hauger',
-		'1995-02-06 06:40:27',
-		'2005-02-02 17:04:34',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		99,
-		'Harmonia Becke',
-		'1961-11-03 17:07:16',
-		'2002-08-22 09:00:05',
-		'History'
-	);
-insert into students_info (
-		id,
-		name,
-		birthday,
-		admission,
-		faculty
-	)
-values (
-		100,
-		'Malia Alcott',
-		'1989-09-26 23:45:51',
-		'2019-08-08 00:38:57',
-		'History'
-	);
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Андрей',
+    'Белов',
+    'Васильевич',
+    '4/5/2002',
+    '11/20/2011',
+    'Факультет архитектуры'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Егор',
+    'Кравцов',
+    'Геннадьевич',
+    '9/26/1998',
+    '4/13/2006',
+    'Факультет физики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Роман',
+    'Михайлов',
+    'Романович',
+    '2/19/2001',
+    '8/29/2013',
+    'Факультет психологии'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Евгений',
+    'Белов',
+    'Викторович',
+    '11/3/2003',
+    '8/3/2015',
+    'Факультет программирования'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Виктор',
+    'Павлов',
+    'Иванович',
+    '5/7/1985',
+    '2/26/2016',
+    'Факультет менеджмента'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Фёдор',
+    'Белов',
+    'Петрович',
+    '8/30/2001',
+    '4/21/2022',
+    'Факультет философии'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Максим',
+    'Ларин',
+    'Дмитриевич',
+    '10/18/1995',
+    '7/8/2015',
+    'Факультет компьютерных наук'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Сергей',
+    'Кузнецов',
+    'Константинович',
+    '3/20/1999',
+    '5/13/2011',
+    'Факультет экономики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Леонид',
+    'Петров',
+    'Борисович',
+    '6/5/1985',
+    '10/3/2012',
+    'Факультет психологии'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Сергей',
+    'Соловьев',
+    'Захарович',
+    '3/11/2003',
+    '5/3/2013',
+    'Факультет дизайна'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Артём',
+    'Кузнецов',
+    'Владимирович',
+    '9/10/1986',
+    '12/28/2019',
+    'Факультет компьютерных наук'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Михаил',
+    'Морозов',
+    'Петрович',
+    '12/25/1996',
+    '5/6/2015',
+    'Факультет компьютерных наук'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Сергей',
+    'Николаев',
+    'Кириллович',
+    '4/7/1985',
+    '2/5/2015',
+    'Факультет механики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Виктор',
+    'Зайцев',
+    'Игоревич',
+    '12/16/1991',
+    '2/21/2011',
+    'Факультет механики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Виталий',
+    'Осипов',
+    'Иванович',
+    '9/22/1992',
+    '1/13/2004',
+    'Факультет электротехники'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Фёдор',
+    'Михайлов',
+    'Олегович',
+    '3/30/1993',
+    '8/27/2008',
+    'Факультет перевода'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Глеб',
+    'Гаврилов',
+    'Сергеевич',
+    '5/31/1994',
+    '3/11/2011',
+    'Факультет кибербезопасности'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Глеб',
+    'Васильев',
+    'Денисович',
+    '9/16/1987',
+    '2/7/2007',
+    'Факультет системного анализа'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Даниил',
+    'Петров',
+    'Васильевич',
+    '7/17/2003',
+    '12/29/2020',
+    'Факультет маркетинга'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Сергей',
+    'Иванов',
+    'Иванович',
+    '9/6/1992',
+    '6/19/2010',
+    'Факультет журналистики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Андрей',
+    'Павлов',
+    'Геннадьевич',
+    '1/4/2001',
+    '2/7/2014',
+    'Факультет математики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Александр',
+    'Макаров',
+    'Романович',
+    '3/27/1990',
+    '9/17/2005',
+    'Факультет математики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Виктор',
+    'Иванов',
+    'Леонидович',
+    '12/30/1990',
+    '3/5/2012',
+    'Факультет системного анализа'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Сергей',
+    'Жуков',
+    'Анатольевич',
+    '4/27/2001',
+    '2/12/2014',
+    'Факультет психологии'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Иван',
+    'Козлов',
+    'Егорович',
+    '9/1/2001',
+    '4/8/2012',
+    'Факультет маркетинга'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Андрей',
+    'Волков',
+    'Николаевич',
+    '2/11/1993',
+    '1/5/2007',
+    'Факультет социологии'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Владимир',
+    'Макаров',
+    'Кириллович',
+    '9/3/1997',
+    '11/10/2020',
+    'Факультет строительства'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Егор',
+    'Кузнецов',
+    'Николаевич',
+    '7/19/1999',
+    '7/20/2003',
+    'Факультет строительства'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Егор',
+    'Дмитриев',
+    'Егорович',
+    '12/3/2004',
+    '3/29/2010',
+    'Факультет механики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Сергей',
+    'Белов',
+    'Игоревич',
+    '12/21/2002',
+    '12/27/2002',
+    'Факультет культурологии'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Андрей',
+    'Соловьев',
+    'Петрович',
+    '7/3/1985',
+    '8/30/2013',
+    'Факультет журналистики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Кирилл',
+    'Белов',
+    'Анатольевич',
+    '6/2/1987',
+    '9/17/2006',
+    'Факультет перевода'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Фёдор',
+    'Васильев',
+    'Николаевич',
+    '8/14/1993',
+    '6/6/2014',
+    'Факультет права'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Андрей',
+    'Смирнов',
+    'Захарович',
+    '8/9/1986',
+    '8/4/2016',
+    'Факультет менеджмента'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Виктор',
+    'Петров',
+    'Денисович',
+    '9/6/1988',
+    '1/23/2003',
+    'Факультет философии'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Роман',
+    'Егоров',
+    'Кириллович',
+    '6/28/2000',
+    '2/11/2008',
+    'Факультет строительства'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Тимофей',
+    'Ильин',
+    'Сергеевич',
+    '2/25/1991',
+    '10/13/2003',
+    'Факультет экономики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Михаил',
+    'Егоров',
+    'Осипович',
+    '10/2/2001',
+    '5/29/2016',
+    'Факультет физики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Виктор',
+    'Кузнецов',
+    'Денисович',
+    '8/22/1995',
+    '10/1/2012',
+    'Факультет политологии'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Леонид',
+    'Павлов',
+    'Иванович',
+    '9/22/2003',
+    '8/24/2018',
+    'Факультет строительства'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Евгений',
+    'Новиков',
+    'Осипович',
+    '9/7/1992',
+    '2/19/2015',
+    'Факультет философии'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Евгений',
+    'Лебедев',
+    'Олегович',
+    '3/11/1986',
+    '8/26/2013',
+    'Факультет искусств'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Кирилл',
+    'Зайцев',
+    'Егорович',
+    '3/11/2004',
+    '11/13/2009',
+    'Факультет психологии'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Илья',
+    'Зайцев',
+    'Дмитриевич',
+    '12/22/1986',
+    '10/15/2018',
+    'Факультет системного анализа'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Глеб',
+    'Федоров',
+    'Иванович',
+    '12/25/2004',
+    '11/11/2006',
+    'Факультет искусств'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Александр',
+    'Петров',
+    'Иванович',
+    '1/21/1992',
+    '11/12/2009',
+    'Факультет компьютерных наук'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Сергей',
+    'Васильев',
+    'Анатольевич',
+    '8/25/1986',
+    '8/4/2006',
+    'Факультет журналистики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Павел',
+    'Зайцев',
+    'Захарович',
+    '1/27/1998',
+    '7/12/2004',
+    'Факультет математики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Фёдор',
+    'Волков',
+    'Максимович',
+    '1/6/1992',
+    '10/26/2017',
+    'Факультет социологии'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Роман',
+    'Кузнецов',
+    'Иванович',
+    '10/27/1989',
+    '9/28/2012',
+    'Факультет социологии'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Михаил',
+    'Петров',
+    'Никитович',
+    '10/21/1992',
+    '6/11/2018',
+    'Факультет физики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Семён',
+    'Волков',
+    'Кириллович',
+    '4/30/1994',
+    '10/20/2021',
+    'Факультет маркетинга'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Алексей',
+    'Белов',
+    'Кириллович',
+    '4/15/1998',
+    '1/26/2005',
+    'Факультет физики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Дмитрий',
+    'Ильин',
+    'Геннадьевич',
+    '12/26/1986',
+    '12/23/2017',
+    'Факультет системного анализа'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Андрей',
+    'Макаров',
+    'Владимирович',
+    '11/16/2002',
+    '7/29/2015',
+    'Факультет химии'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Максим',
+    'Михайлов',
+    'Романович',
+    '10/14/1989',
+    '8/3/2016',
+    'Факультет информатики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Роман',
+    'Ильин',
+    'Осипович',
+    '2/6/1994',
+    '10/8/2003',
+    'Факультет лингвистики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Николай',
+    'Николаев',
+    'Владимирович',
+    '6/29/2001',
+    '5/16/2012',
+    'Факультет экономики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Василий',
+    'Иванов',
+    'Николаевич',
+    '1/13/1991',
+    '5/7/2020',
+    'Факультет психологии'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Павел',
+    'Лебедев',
+    'Денисович',
+    '8/8/2000',
+    '10/21/2003',
+    'Факультет менеджмента'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Олег',
+    'Лебедев',
+    'Романович',
+    '5/13/1991',
+    '4/19/2011',
+    'Факультет географии'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Семён',
+    'Назаров',
+    'Николаевич',
+    '12/14/1987',
+    '10/18/2021',
+    'Факультет маркетинга'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Кирилл',
+    'Кузнецов',
+    'Борисович',
+    '12/12/2001',
+    '11/18/2013',
+    'Факультет электротехники'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Кирилл',
+    'Михайлов',
+    'Максимович',
+    '1/1/2005',
+    '11/13/2009',
+    'Факультет журналистики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Артём',
+    'Назаров',
+    'Анатольевич',
+    '11/18/1985',
+    '4/17/2021',
+    'Факультет физики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Евгений',
+    'Осипов',
+    'Леонидович',
+    '10/28/1988',
+    '6/12/2019',
+    'Факультет лингвистики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Алексей',
+    'Иванов',
+    'Романович',
+    '2/22/2002',
+    '11/18/2008',
+    'Факультет права'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Виталий',
+    'Назаров',
+    'Никитович',
+    '11/13/1999',
+    '7/26/2011',
+    'Факультет физики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Дмитрий',
+    'Иванов',
+    'Борисович',
+    '1/12/1989',
+    '2/11/2009',
+    'Факультет системного анализа'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Глеб',
+    'Кузнецов',
+    'Григорьевич',
+    '10/26/1991',
+    '1/24/2021',
+    'Факультет искусств'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Алексей',
+    'Осипов',
+    'Максимович',
+    '1/25/1995',
+    '6/15/2004',
+    'Факультет химии'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Тимофей',
+    'Михайлов',
+    'Максимович',
+    '10/30/1986',
+    '3/2/2003',
+    'Факультет философии'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Семён',
+    'Назаров',
+    'Викторович',
+    '2/24/2003',
+    '7/19/2021',
+    'Факультет истории'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Даниил',
+    'Комаров',
+    'Васильевич',
+    '1/24/2004',
+    '7/12/2005',
+    'Факультет искусств'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Николай',
+    'Макаров',
+    'Олегович',
+    '6/11/1989',
+    '2/3/2005',
+    'Факультет дизайна'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Дмитрий',
+    'Осипов',
+    'Артемович',
+    '5/23/1989',
+    '2/2/2013',
+    'Факультет электротехники'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Георгий',
+    'Волков',
+    'Егорович',
+    '12/1/1986',
+    '5/18/2015',
+    'Факультет архитектуры'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Виктор',
+    'Павлов',
+    'Петрович',
+    '11/27/1997',
+    '7/11/2022',
+    'Факультет программирования'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Фёдор',
+    'Козлов',
+    'Евгеньевич',
+    '4/27/2001',
+    '3/5/2005',
+    'Факультет истории'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Семён',
+    'Федоров',
+    'Васильевич',
+    '9/11/1994',
+    '2/8/2009',
+    'Факультет кибербезопасности'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Ярослав',
+    'Сидоров',
+    'Васильевич',
+    '9/8/1995',
+    '11/21/2020',
+    'Факультет психологии'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Георгий',
+    'Егоров',
+    'Леонидович',
+    '1/12/1987',
+    '6/15/2019',
+    'Факультет математики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Максим',
+    'Федоров',
+    'Григорьевич',
+    '9/13/1987',
+    '4/12/2022',
+    'Факультет дизайна'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Илья',
+    'Николаев',
+    'Денисович',
+    '12/23/1993',
+    '12/23/2006',
+    'Факультет экономики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Евгений',
+    'Васильев',
+    'Романович',
+    '4/25/1998',
+    '8/8/2005',
+    'Факультет механики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Василий',
+    'Павлов',
+    'Иванович',
+    '7/16/2001',
+    '5/19/2005',
+    'Факультет строительства'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Василий',
+    'Осипов',
+    'Дмитриевич',
+    '3/18/1989',
+    '10/22/2002',
+    'Факультет журналистики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Егор',
+    'Петров',
+    'Денисович',
+    '10/9/1989',
+    '4/6/2004',
+    'Факультет механики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Олег',
+    'Павлов',
+    'Никитович',
+    '6/29/1996',
+    '4/28/2013',
+    'Факультет кибербезопасности'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Илья',
+    'Белов',
+    'Михайлович',
+    '4/14/1988',
+    '8/23/2019',
+    'Факультет биологии'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Михаил',
+    'Кравцов',
+    'Григорьевич',
+    '12/15/1985',
+    '8/7/2015',
+    'Факультет математики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Олег',
+    'Жуков',
+    'Дмитриевич',
+    '3/21/1987',
+    '9/21/2011',
+    'Факультет биологии'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Иван',
+    'Сидоров',
+    'Михайлович',
+    '7/8/2000',
+    '6/13/2017',
+    'Факультет журналистики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Максим',
+    'Васильев',
+    'Денисович',
+    '3/29/2005',
+    '10/4/2020',
+    'Факультет механики'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Владимир',
+    'Зайцев',
+    'Егорович',
+    '1/30/1998',
+    '1/13/2013',
+    'Факультет химии'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Семён',
+    'Ларин',
+    'Леонидович',
+    '5/10/2004',
+    '7/1/2006',
+    'Факультет компьютерных наук'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Ярослав',
+    'Осипов',
+    'Осипович',
+    '5/1/1991',
+    '10/3/2021',
+    'Факультет перевода'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Михаил',
+    'Макаров',
+    'Сергеевич',
+    '7/18/1996',
+    '1/1/2013',
+    'Факультет истории'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Михаил',
+    'Смирнов',
+    'Викторович',
+    '8/22/1991',
+    '9/29/2006',
+    'Факультет системного анализа'
+  );
+insert into students_info (
+    firstname,
+    lastname,
+    patronimic,
+    birthday,
+    admission,
+    faculty
+  )
+values (
+    'Егор',
+    'Сидоров',
+    'Никитович',
+    '4/4/2003',
+    '5/18/2003',
+    'Факультет журналистики'
+  );
