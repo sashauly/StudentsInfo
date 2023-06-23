@@ -28,28 +28,32 @@ function createFilterContent() {
     filterName,
     filterAdmission,
     filterGraduation,
-    filterFaculty,
+    filterFaculty
   ];
 
   const inputProperties = [
     { id: 'filter-name', type: 'text', placeholder: 'Full Name' },
     { id: 'filter-start', type: 'year', placeholder: 'Years of study' },
-    { id: 'filter-graduation', type: 'year', placeholder: 'Year of graduation' },
-    { id: 'filter-faculty', type: 'text', placeholder: 'Faculty' },
+    {
+      id: 'filter-graduation',
+      type: 'year',
+      placeholder: 'Year of graduation'
+    },
+    { id: 'filter-faculty', type: 'text', placeholder: 'Faculty' }
   ];
 
   const labelAssoc = [
     'filter-name',
     'filter-start',
     'filter-graduation',
-    'filter-faculty',
+    'filter-faculty'
   ];
 
   const labelProperties = [
     { for: 'filter-name', textContent: 'Search by full name' },
     { for: 'filter-start', textContent: 'Search by year of study start' },
     { for: 'filter-graduation', textContent: 'Search by year of graduation' },
-    { for: 'filter-faculty', textContent: 'Search by faculty' },
+    { for: 'filter-faculty', textContent: 'Search by faculty' }
   ];
 
   for (let i = 0; i < inputFilters.length; i += 1) {
@@ -75,7 +79,7 @@ function createFilterContent() {
 
   return {
     filterContent,
-    inputFilters,
+    inputFilters
   };
 }
 
@@ -93,7 +97,7 @@ function createAppTable() {
     { id: 'name', scope: 'col', textContent: 'Full Name' },
     { id: 'birthday', scope: 'col', textContent: 'Date of Birth (age)' },
     { id: 'admission', scope: 'col', textContent: 'Years of study' },
-    { id: 'faculty', scope: 'col', textContent: 'Faculty' },
+    { id: 'faculty', scope: 'col', textContent: 'Faculty' }
   ];
 
   ths.forEach((th) => {
@@ -162,7 +166,7 @@ function createAppForm() {
     placeholder: 'First Name',
     pattern: '^[А-ЯЁA-Zа-яёa-z]+$',
     title: 'The name must contain only letters and start with a capital letter',
-    required: true,
+    required: true
   });
   Object.assign(lastNameInput, {
     type: 'text',
@@ -170,8 +174,9 @@ function createAppForm() {
     id: 'input-last-name',
     placeholder: 'Last Name',
     pattern: '^[А-ЯЁA-Zа-яёa-z]+$',
-    title: 'The last name must contain only letters and start with a capital letter',
-    required: true,
+    title:
+      'The last name must contain only letters and start with a capital letter',
+    required: true
   });
   Object.assign(patronimicInput, {
     type: 'text',
@@ -179,7 +184,8 @@ function createAppForm() {
     id: 'input-patronimic',
     placeholder: 'Patronimic',
     pattern: '^[А-ЯЁA-Zа-яёa-z]+$',
-    title: 'The patronimic must contain only letters and start with a capital letter',
+    title:
+      'The patronimic must contain only letters and start with a capital letter'
   });
 
   Object.assign(birthdayInput, {
@@ -187,14 +193,14 @@ function createAppForm() {
     className: 'form-control',
     id: 'input-birthday',
     placeholder: 'Date of birth',
-    required: true,
+    required: true
   });
   Object.assign(admissionInput, {
     type: 'date',
     className: 'form-control',
     id: 'input-admission',
     placeholder: 'Year of study start',
-    required: true,
+    required: true
   });
   Object.assign(facultyInput, {
     type: 'text',
@@ -202,15 +208,22 @@ function createAppForm() {
     id: 'input-faculty',
     placeholder: 'Faculty',
     pattern: '^[А-ЯЁA-Zа-яёa-zk]+$',
-    title: 'The faculty must contain only letters and start with a capital letter',
-    required: true,
+    title:
+      'The faculty must contain only letters and start with a capital letter',
+    required: true
   });
 
   const currentDate = new Date().toLocaleDateString();
-  birthdayInput.setAttribute('min', new Date('1900-01-01').toLocaleDateString());
+  birthdayInput.setAttribute(
+    'min',
+    new Date('1900-01-01').toLocaleDateString()
+  );
   birthdayInput.setAttribute('max', currentDate);
 
-  admissionInput.setAttribute('min', new Date('2000-01-01').toLocaleDateString());
+  admissionInput.setAttribute(
+    'min',
+    new Date('2000-01-01').toLocaleDateString()
+  );
   admissionInput.setAttribute('max', currentDate);
 
   birthdayLabel.setAttribute('for', 'input-birthday');
@@ -225,7 +238,12 @@ function createAppForm() {
   facultyLabel.classList.add('form-label');
   facultyLabel.textContent = 'Faculty';
 
-  inputGroup1.append(inputGroupText, firstNameInput, lastNameInput, patronimicInput);
+  inputGroup1.append(
+    inputGroupText,
+    firstNameInput,
+    lastNameInput,
+    patronimicInput
+  );
 
   col1.append(birthdayLabel, birthdayInput);
   col2.append(admissionLabel, admissionInput);
@@ -236,7 +254,7 @@ function createAppForm() {
     inputGroup1,
     inputGroup2,
 
-    button,
+    button
   );
 
   return {
@@ -247,7 +265,7 @@ function createAppForm() {
     birthdayInput,
     admissionInput,
     facultyInput,
-    button,
+    button
   };
 }
 
@@ -260,9 +278,9 @@ function getStudentItem(studentObj) {
 
   const currentDate = new Date();
   const dateBirth = new Date(studentObj.birthday);
-  const age = Math.floor((currentDate - dateBirth) / 3.154e+10);
+  const age = Math.floor((currentDate - dateBirth) / 3.154e10);
   const dateAdmission = new Date(studentObj.admission);
-  let checkGraduation = Math.ceil((currentDate - dateAdmission) / 3.154e+10);
+  let checkGraduation = Math.ceil((currentDate - dateAdmission) / 3.154e10);
   if (checkGraduation > 4) {
     checkGraduation = 'graduated';
   } else {
@@ -270,8 +288,12 @@ function getStudentItem(studentObj) {
   }
 
   name.textContent = `${studentObj.firstname} ${studentObj.patronimic} ${studentObj.lastname}`;
-  birthday.textContent = `${dateBirth.toLocaleDateString('ru-RU')} (${age} y.o.)`;
-  admission.textContent = `${dateAdmission.getFullYear()} - ${dateAdmission.getFullYear() + 4} (${checkGraduation})`;
+  birthday.textContent = `${dateBirth.toLocaleDateString(
+    'ru-RU'
+  )} (${age} y.o.)`;
+  admission.textContent = `${dateAdmission.getFullYear()} - ${
+    dateAdmission.getFullYear() + 4
+  } (${checkGraduation})`;
   faculty.textContent = studentObj.faculty;
   row.append(name, birthday, admission, faculty);
   return row;
@@ -289,7 +311,7 @@ container.append(
   appTitle,
   filterContent.filterContent,
   formContent.form,
-  tableContent.tableContent,
+  tableContent.tableContent
 );
 document.body.appendChild(container);
 
@@ -303,7 +325,8 @@ fetch('http://localhost:3000/api/users', { method: 'GET' })
   .then((res) => res.json())
   .then((data) => {
     renderStudentsTable(data);
-  }).catch((error) => {
+  })
+  .catch((error) => {
     console.log(error);
   });
 
@@ -316,15 +339,15 @@ formContent.form.addEventListener('submit', (event) => {
     patronimic: formContent.patronimicInput.value,
     birthday: formContent.birthdayInput.value,
     admission: formContent.admissionInput.value,
-    faculty: formContent.facultyInput.value,
+    faculty: formContent.facultyInput.value
   };
 
   fetch('http://localhost:3000/api/users', {
     method: 'POST',
     headers: {
-      'Content-type': 'application/json',
+      'Content-type': 'application/json'
     },
-    body: JSON.stringify(studentObj),
+    body: JSON.stringify(studentObj)
   })
     .then((res) => {
       if (!res.ok) {
@@ -335,7 +358,8 @@ formContent.form.addEventListener('submit', (event) => {
     .then((data) => {
       console.log(data.message);
       tableContent.tbody.append(getStudentItem(data.user[0]));
-    }).catch((error) => {
+    })
+    .catch((error) => {
       console.log(error);
     });
 
@@ -345,7 +369,7 @@ formContent.form.addEventListener('submit', (event) => {
     formContent.patronimicInput,
     formContent.birthdayInput,
     formContent.admissionInput,
-    formContent.facultyInput,
+    formContent.facultyInput
   ];
   inputFields.forEach((input) => {
     input.value = '';
@@ -389,7 +413,8 @@ headers.forEach((header) => {
         order *= -1;
         tableContent.tbody.innerHTML = '';
         renderStudentsTable(data);
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.log(error);
       });
   });

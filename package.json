@@ -1,13 +1,18 @@
 {
   "private": true,
   "scripts": {
-    "lint": "eslint ./"
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "lint:eslint": "eslint --fix .",
+    "lint:prettier": "prettier --write ."
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^8.43.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.27.5"
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.8"
   }
 }
