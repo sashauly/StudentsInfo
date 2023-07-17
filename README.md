@@ -18,12 +18,12 @@ Simple project with my own implemented REST API and Postgresql database.
 ## Technologies
 Project is created with:
 * JavaScript ES6
-* NodeJS
-* REST API
-* PostgreSQL
-* Docker
-* docker-compose
-* Bootstrap
+* [NodeJS](https://nodejs.org/en)
+* My own written REST API
+* [PostgreSQL](https://www.postgresql.org/)
+* [Docker](https://www.docker.com/)
+* [docker-compose](https://docs.docker.com/compose/)
+* [Bootstrap](https://getbootstrap.com/)
 
 ## Setup
 To run this project, first you need to clone repository:
