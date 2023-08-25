@@ -15,5 +15,145 @@
     <script defer src="main.js"></script>
   </head>
 
-  <body></body>
+  <body>
+    <div class="container">
+      <h1 class="text-center">Students Info</h1>
+      <div class="filter-content mb-3">
+        <h2>Search</h2>
+        <div class="row g-3">
+          <div class="col">
+            <label class="label" for="filter-name">Search by full name</label>
+            <input
+              class="form-control"
+              id="filter-name"
+              type="text"
+              placeholder="Full Name"
+            />
+          </div>
+          <div class="col">
+            <label class="label" for="filter-start"
+              >Search by year of study start</label
+            >
+            <input
+              class="form-control"
+              id="filter-start"
+              type="year"
+              placeholder="Years of study"
+            />
+          </div>
+          <div class="col">
+            <label class="label" for="filter-graduation"
+              >Search by year of graduation</label
+            >
+            <input
+              class="form-control"
+              id="filter-graduation"
+              type="year"
+              placeholder="Year of graduation"
+            />
+          </div>
+          <div class="col">
+            <label class="label" for="filter-faculty">Search by faculty</label>
+            <input
+              class="form-control"
+              id="filter-faculty"
+              type="text"
+              placeholder="Faculty"
+            />
+          </div>
+        </div>
+      </div>
+      <form class="form" id="form">
+        <h2>Add new student</h2>
+        <div class="input-group mb-3">
+          <span class="input-group-text">Full Name</span>
+          <input
+            type="text"
+            class="form-control"
+            id="input-first-name"
+            placeholder="First Name"
+            pattern="^[А-ЯЁA-Zа-яёa-z]+$"
+            title="The name must contain only letters and start with a capital letter"
+            required=""
+          />
+          <input
+            type="text"
+            class="form-control"
+            id="input-last-name"
+            placeholder="Last Name"
+            pattern="^[А-ЯЁA-Zа-яёa-z]+$"
+            title="The last name must contain only letters and start with a capital letter"
+            required=""
+          />
+          <input
+            type="text"
+            class="form-control"
+            id="input-patronimic"
+            placeholder="Patronimic"
+            pattern="^[А-ЯЁA-Zа-яёa-z]+$"
+            title="The patronimic must contain only letters and start with a capital letter"
+          />
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <label for="input-birthday" class="form-label">Date of birth</label>
+            <input
+              type="date"
+              class="form-control"
+              id="input-birthday"
+              placeholder="Date of birth"
+              required=""
+              min="1/1/1900"
+              max=""
+            />
+          </div>
+          <div class="col">
+            <label for="input-admission" class="form-label"
+              >Year of study start</label
+            >
+            <input
+              type="date"
+              class="form-control"
+              id="input-admission"
+              placeholder="Year of study start"
+              required=""
+              min="1/1/2000"
+              max=""
+            />
+          </div>
+          <div class="col">
+            <label for="input-faculty" class="form-label">Faculty</label>
+            <input
+              type="text"
+              class="form-control"
+              id="input-faculty"
+              placeholder="Faculty"
+              pattern="^[А-ЯЁA-Zа-яёa-zk]+$"
+              title="The faculty must contain only letters and start with a capital letter"
+              required=""
+            />
+          </div>
+        </div>
+        <button class="btn btn-primary">Add student</button>
+      </form>
+      <div class="table-content mb-3">
+        <table class="table-responsive">
+          <thead>
+            <tr>
+              <th id="id" scope="col" style="cursor: pointer">#</th>
+              <th id="name" scope="col" style="cursor: pointer">Full Name</th>
+              <th id="birthday" scope="col" style="cursor: pointer">
+                Date of Birth (age)
+              </th>
+              <th id="admission" scope="col" style="cursor: pointer">
+                Years of study
+              </th>
+              <th id="faculty" scope="col" style="cursor: pointer">Faculty</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </body>
 </html>
