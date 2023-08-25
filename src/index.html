@@ -10,6 +10,7 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+
     <title>List of students</title>
 
     <script defer src="main.js"></script>
@@ -18,47 +19,24 @@
   <body>
     <div class="container">
       <h1 class="text-center">Students Info</h1>
-      <div class="filter-content mb-3">
-        <h2>Search</h2>
-        <div class="row g-3">
-          <div class="col">
-            <label class="label" for="filter-name">Search by full name</label>
-            <input
-              class="form-control"
-              id="filter-name"
-              type="text"
-              placeholder="Full Name"
-            />
-          </div>
-          <div class="col">
-            <label class="label" for="filter-start"
-              >Search by year of study start</label
+      <div class="row g-3">
+        <h2>Search by</h2>
+        <div class="col">
+          <div class="input-group mb-3">
+            <select
+              class="form-select filter-select"
+              aria-label="Default select example"
             >
+              <option value="1">Full Name</option>
+              <option value="2">Start Study</option>
+              <option value="3">Graduation</option>
+              <option value="4">Faculty</option>
+            </select>
             <input
-              class="form-control"
-              id="filter-start"
-              type="year"
-              placeholder="Years of study"
-            />
-          </div>
-          <div class="col">
-            <label class="label" for="filter-graduation"
-              >Search by year of graduation</label
-            >
-            <input
-              class="form-control"
-              id="filter-graduation"
-              type="year"
-              placeholder="Year of graduation"
-            />
-          </div>
-          <div class="col">
-            <label class="label" for="filter-faculty">Search by faculty</label>
-            <input
-              class="form-control"
-              id="filter-faculty"
               type="text"
-              placeholder="Faculty"
+              class="form-control filter-input"
+              placeholder="Enter Full Name"
+              aria-label="Text input with segmented dropdown button"
             />
           </div>
         </div>
@@ -136,8 +114,8 @@
         </div>
         <button class="btn btn-primary">Add student</button>
       </form>
-      <div class="table-content mb-3">
-        <table class="table-responsive">
+      <div class="table-content table-responsive mb-3">
+        <table class="table">
           <thead>
             <tr>
               <th id="id" scope="col" style="cursor: pointer">#</th>
@@ -151,7 +129,7 @@
               <th id="faculty" scope="col" style="cursor: pointer">Faculty</th>
             </tr>
           </thead>
-          <tbody id="tbody"></tbody>
+          <tbody id="tbody" class="table-group-divider"></tbody>
         </table>
       </div>
     </div>

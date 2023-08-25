@@ -1,43 +1,58 @@
-// TODO Доработайте существующее приложение со списком студентов из предыдущего модуля.
+// Filter(search) by column
+const filterSelect = document.querySelector('.filter-select');
+const filterInput = document.querySelector('.filter-input');
 
-// Добавьте возможность сохранения списка студентов на сервере.
-// При запуске приложения должна быть выполнена проверка на наличие данных на сервере.
-// Если данные есть, то нужно вывести список студентов на экран.
+filterSelect.addEventListener('change', () => {
+  switch (filterSelect.value) {
+    case '1':
+      filterInput.type = 'text';
+      filterInput.placeholder = 'Enter Full Name';
+      break;
+    case '2':
+      filterInput.type = 'date';
+      filterInput.placeholder = 'Enter Start Study Date';
+      break;
+    case '3':
+      filterInput.type = 'date';
+      filterInput.placeholder = 'Enter Graduation Date';
+      break;
+    case '4':
+      filterInput.type = 'text';
+      filterInput.placeholder = 'Enter Faculty Name';
+      break;
+    default:
+      filterInput.type = 'text';
+      filterInput.placeholder = '';
+  }
+});
 
-// Добавьте возможность удаления студентов из списка.
+filterInput.addEventListener('input', () => {
+  const rows = Array.from(document.querySelectorAll('tbody tr'));
+  const filter = filterInput.value.toLowerCase();
 
-const filterName = document.querySelector('#filter-name');
-const filterAdmission = document.querySelector('#filter-start');
-const filterGraduation = document.querySelector('#filter-graduation');
-const filterFaculty = document.querySelector('#filter-faculty');
+  for (let i = 0; i < rows.length; i += 1) {
+    const td = rows[i].getElementsByTagName('td');
+    let found = false;
 
-const inputFilters = [
-  filterName,
-  filterAdmission,
-  filterGraduation,
-  filterFaculty
-];
+    for (let j = 0; j < td.length; j += 1) {
+      if (td[j].innerHTML.toLowerCase().indexOf(filter) > -1) {
+        found = true;
+        break;
+      }
+    }
 
-const form = document.querySelector('form');
+    if (found) {
+      rows[i].style.display = '';
+    } else {
+      rows[i].style.display = 'none';
+    }
+  }
+});
 
-const firstNameInput = document.querySelector('input');
-const lastNameInput = document.querySelector('input');
-const patronimicInput = document.querySelector('input');
-const facultyInput = document.querySelector('input');
-
-const birthdayInput = document.querySelector('#input-birthday');
-const admissionInput = document.querySelector('#input-admission');
-
-const currentDate = new Date().toLocaleDateString();
-birthdayInput.setAttribute('min', new Date('1900-01-01').toLocaleDateString());
-birthdayInput.setAttribute('max', currentDate);
-
-admissionInput.setAttribute('min', new Date('2000-01-01').toLocaleDateString());
-admissionInput.setAttribute('max', currentDate);
-
+// Render one student
 function getStudentItem(studentObj) {
   const row = document.createElement('tr');
-  const id = document.createElement('td');
+  const id = document.createElement('th');
   const name = document.createElement('td');
   const birthday = document.createElement('td');
   const admission = document.createElement('td');
@@ -54,6 +69,7 @@ function getStudentItem(studentObj) {
     checkGraduation += ' course';
   }
   id.textContent = studentObj.id;
+  id.setAttribute('scope', 'row');
   name.textContent = `${studentObj.firstname} ${studentObj.patronimic} ${studentObj.lastname}`;
   birthday.textContent = `${dateBirth.toLocaleDateString(
     'ru-RU'
@@ -66,6 +82,7 @@ function getStudentItem(studentObj) {
   return row;
 }
 
+// Render all students
 const tbody = document.querySelector('tbody');
 
 function renderStudentsTable(studentsArray) {
@@ -74,6 +91,7 @@ function renderStudentsTable(studentsArray) {
   });
 }
 
+// Render all students for the first time
 fetch('http://localhost:3000/api/users', { method: 'GET' })
   .then((res) => res.json())
   .then((data) => {
@@ -83,8 +101,21 @@ fetch('http://localhost:3000/api/users', { method: 'GET' })
     console.log(error);
   });
 
+// Add new user
+const form = document.querySelector('form');
+
+const birthdayInput = document.querySelector('#input-birthday');
+const admissionInput = document.querySelector('#input-admission');
+
+birthdayInput.setAttribute('max', new Date().toLocaleDateString());
+admissionInput.setAttribute('max', new Date().toLocaleDateString());
+
 form.addEventListener('submit', (event) => {
   event.preventDefault();
+  const firstNameInput = document.querySelector('#input-first-name');
+  const lastNameInput = document.querySelector('#input-last-name');
+  const patronimicInput = document.querySelector('#input-patronimic');
+  const facultyInput = document.querySelector('#input-faculty');
 
   const studentObj = {
     firstname: firstNameInput.value,
@@ -179,31 +210,5 @@ headers.forEach((header) => {
       .catch((error) => {
         console.log(error);
       });
-  });
-});
-
-// FILTER
-inputFilters.forEach((filterInput) => {
-  filterInput.addEventListener('input', () => {
-    const rows = Array.from(document.querySelectorAll('tbody tr'));
-    const filter = filterInput.value.toLowerCase();
-
-    for (let i = 0; i < rows.length; i += 1) {
-      const td = rows[i].getElementsByTagName('td');
-      let found = false;
-
-      for (let j = 0; j < td.length; j += 1) {
-        if (td[j].innerHTML.toLowerCase().indexOf(filter) > -1) {
-          found = true;
-          break;
-        }
-      }
-
-      if (found) {
-        rows[i].style.display = '';
-      } else {
-        rows[i].style.display = 'none';
-      }
-    }
   });
 });
