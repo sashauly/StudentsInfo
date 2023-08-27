@@ -1,6 +1,6 @@
 import express from 'express';
-import router from './routes/app.routes.js';
-import cache from './routes/cache.routes.js';
+import router from './routes/app.routes';
+import cache from './routes/cache.routes';
 
 const PORT = process.env.PORT || 3000;
 

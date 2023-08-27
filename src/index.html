@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -27,10 +27,10 @@
               class="form-select filter-select"
               aria-label="Default select example"
             >
-              <option value="1">Full Name</option>
-              <option value="2">Start Study</option>
-              <option value="3">Graduation</option>
-              <option value="4">Faculty</option>
+              <option value="name">Full Name</option>
+              <option value="start">Start Study</option>
+              <option value="graduation">Graduation</option>
+              <option value="faculty">Faculty</option>
             </select>
             <input
               type="text"
@@ -46,6 +46,7 @@
         <div class="input-group mb-3">
           <span class="input-group-text">Full Name</span>
           <input
+            name="firstname"
             type="text"
             class="form-control"
             id="input-first-name"
@@ -55,6 +56,7 @@
             required=""
           />
           <input
+            name="lastname"
             type="text"
             class="form-control"
             id="input-last-name"
@@ -64,6 +66,7 @@
             required=""
           />
           <input
+            name="patronimic"
             type="text"
             class="form-control"
             id="input-patronimic"
@@ -76,6 +79,7 @@
           <div class="col">
             <label for="input-birthday" class="form-label">Date of birth</label>
             <input
+              name="birthday"
               type="date"
               class="form-control"
               id="input-birthday"
@@ -90,6 +94,7 @@
               >Year of study start</label
             >
             <input
+              name="admission"
               type="date"
               class="form-control"
               id="input-admission"
@@ -102,6 +107,7 @@
           <div class="col">
             <label for="input-faculty" class="form-label">Faculty</label>
             <input
+              name="faculty"
               type="text"
               class="form-control"
               id="input-faculty"

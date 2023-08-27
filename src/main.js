@@ -1,214 +1,241 @@
-// Filter(search) by column
+const tbody = document.querySelector('tbody');
+
 const filterSelect = document.querySelector('.filter-select');
 const filterInput = document.querySelector('.filter-input');
 
-filterSelect.addEventListener('change', () => {
-  switch (filterSelect.value) {
-    case '1':
-      filterInput.type = 'text';
-      filterInput.placeholder = 'Enter Full Name';
-      break;
-    case '2':
-      filterInput.type = 'date';
-      filterInput.placeholder = 'Enter Start Study Date';
-      break;
-    case '3':
-      filterInput.type = 'date';
-      filterInput.placeholder = 'Enter Graduation Date';
-      break;
-    case '4':
-      filterInput.type = 'text';
-      filterInput.placeholder = 'Enter Faculty Name';
-      break;
-    default:
-      filterInput.type = 'text';
-      filterInput.placeholder = '';
+const filterConfig = {
+  name: {
+    type: 'text',
+    placeholder: 'Enter Name...'
+  },
+  start: {
+    type: 'date',
+    placeholder: 'Enter start study date...'
+  },
+  graduation: {
+    type: 'date',
+    placeholder: 'Enter Graduation Date...'
+  },
+  faculty: {
+    type: 'text',
+    placeholder: 'Enter Faculty Name...'
   }
-});
+};
 
-filterInput.addEventListener('input', () => {
-  const rows = Array.from(document.querySelectorAll('tbody tr'));
-  const filter = filterInput.value.toLowerCase();
+const handleFilterChange = () => {
+  const selectedFilter = filterSelect.value;
+  const config = filterConfig[selectedFilter];
+  filterInput.type = config.type;
+  filterInput.placeholder = config.placeholder;
+};
 
-  for (let i = 0; i < rows.length; i += 1) {
-    const td = rows[i].getElementsByTagName('td');
-    let found = false;
+const handleFilterInput = () => {
+  const filterValue = filterInput.value.toLowerCase();
+  const rows = Array.from(tbody.getElementsByTagName('tr'));
+  rows.forEach((row) => {
+    const cells = Array.from(row.getElementsByTagName('td'));
+    const match = cells.some((cell) =>
+      cell.textContent.toLowerCase().includes(filterValue)
+    );
+    row.style.display = match ? '' : 'none';
+  });
+};
 
-    for (let j = 0; j < td.length; j += 1) {
-      if (td[j].innerHTML.toLowerCase().indexOf(filter) > -1) {
-        found = true;
-        break;
-      }
-    }
-
-    if (found) {
-      rows[i].style.display = '';
-    } else {
-      rows[i].style.display = 'none';
-    }
-  }
-});
-
-// Render one student
-function getStudentItem(studentObj) {
-  const row = document.createElement('tr');
-  const id = document.createElement('th');
-  const name = document.createElement('td');
-  const birthday = document.createElement('td');
-  const admission = document.createElement('td');
-  const faculty = document.createElement('td');
-
+const createStudentRow = ({
+  id,
+  firstname,
+  patronimic,
+  lastname,
+  birthday,
+  admission,
+  faculty
+}) => {
   const currentDate = new Date();
-  const dateBirth = new Date(studentObj.birthday);
+  const dateBirth = new Date(birthday);
   const age = Math.floor((currentDate - dateBirth) / 3.154e10);
-  const dateAdmission = new Date(studentObj.admission);
+  const dateAdmission = new Date(admission);
   let checkGraduation = Math.ceil((currentDate - dateAdmission) / 3.154e10);
-  if (checkGraduation > 4) {
-    checkGraduation = 'graduated';
-  } else {
-    checkGraduation += ' course';
+  checkGraduation =
+    checkGraduation > 4 ? 'graduated' : `${checkGraduation} course`;
+
+  return `
+    <tr>
+      <th scope="row">${id}</th>
+      <td>${firstname} ${patronimic} ${lastname}</td>
+      <td>${dateBirth.toLocaleDateString('ru-RU')} (${age} y.o.)</td>
+      <td>${dateAdmission.getFullYear()} - ${
+        dateAdmission.getFullYear() + 4
+      } (${checkGraduation})</td>
+      <td>${faculty}</td>
+    </tr>
+  `;
+};
+
+const renderStudentsTable = (students) => {
+  tbody.innerHTML = students.map(createStudentRow).join('');
+};
+
+const fetchData = async (url) => {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Error: ${response.status}`);
   }
-  id.textContent = studentObj.id;
-  id.setAttribute('scope', 'row');
-  name.textContent = `${studentObj.firstname} ${studentObj.patronimic} ${studentObj.lastname}`;
-  birthday.textContent = `${dateBirth.toLocaleDateString(
-    'ru-RU'
-  )} (${age} y.o.)`;
-  admission.textContent = `${dateAdmission.getFullYear()} - ${
-    dateAdmission.getFullYear() + 4
-  } (${checkGraduation})`;
-  faculty.textContent = studentObj.faculty;
-  row.append(id, name, birthday, admission, faculty);
-  return row;
+  const data = await response.json();
+  return data;
+};
+
+const fetchStudents = () => {
+  fetchData('http://localhost:3000/api/users')
+    .then((students) => {
+      renderStudentsTable(students);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+const setInputMaxDates = () => {
+  const today = new Date().toLocaleDateString();
+  const birthdayInput = document.querySelector('#input-birthday');
+  const admissionInput = document.querySelector('#input-admission');
+  admissionInput.max = today;
+  birthdayInput.max = today;
+};
+
+const successNotificationStyles = {
+  position: 'fixed',
+  bottom: '20px',
+  right: '20px',
+  backgroundColor: '#28a745',
+  color: '#fff',
+  padding: '10px',
+  borderRadius: '5px',
+  boxShadow: '0 2px 5px rgba(0, 0, 0, 0.3)',
+  zIndex: '9999'
+};
+
+const errorNotificationStyles = {
+  position: 'fixed',
+  bottom: '20px',
+  right: '20px',
+  backgroundColor: '#dc3545',
+  color: '#fff',
+  padding: '10px',
+  borderRadius: '5px',
+  boxShadow: '0 2px 5px rgba(0, 0, 0, 0.3)',
+  zIndex: '9999'
+};
+
+function createNotification(message, styles) {
+  const notification = document.createElement('div');
+  notification.textContent = message;
+  Object.assign(notification.style, styles);
+  return notification;
 }
 
-// Render all students
-const tbody = document.querySelector('tbody');
+function showSuccessNotification() {
+  const notification = createNotification(
+    'User successfully added',
+    successNotificationStyles
+  );
+  document.body.appendChild(notification);
 
-function renderStudentsTable(studentsArray) {
-  studentsArray.forEach((student) => {
-    tbody.append(getStudentItem(student));
-  });
+  setTimeout(() => {
+    notification.remove();
+  }, 3000);
 }
 
-// Render all students for the first time
-fetch('http://localhost:3000/api/users', { method: 'GET' })
-  .then((res) => res.json())
-  .then((data) => {
-    renderStudentsTable(data);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+function showErrorNotification() {
+  const notification = createNotification(
+    'Error adding user',
+    errorNotificationStyles
+  );
+  document.body.appendChild(notification);
 
-// Add new user
-const form = document.querySelector('form');
+  setTimeout(() => {
+    notification.remove();
+  }, 3000);
+}
 
-const birthdayInput = document.querySelector('#input-birthday');
-const admissionInput = document.querySelector('#input-admission');
-
-birthdayInput.setAttribute('max', new Date().toLocaleDateString());
-admissionInput.setAttribute('max', new Date().toLocaleDateString());
-
-form.addEventListener('submit', (event) => {
+document.querySelector('form').addEventListener('submit', (event) => {
   event.preventDefault();
-  const firstNameInput = document.querySelector('#input-first-name');
-  const lastNameInput = document.querySelector('#input-last-name');
-  const patronimicInput = document.querySelector('#input-patronimic');
-  const facultyInput = document.querySelector('#input-faculty');
+  const form = event.target;
+  const formData = new FormData(form);
+  const student = Object.fromEntries(formData.entries());
 
-  const studentObj = {
-    firstname: firstNameInput.value,
-    lastname: lastNameInput.value,
-    patronimic: patronimicInput.value,
-    birthday: birthdayInput.value,
-    admission: admissionInput.value,
-    faculty: facultyInput.value
-  };
-
-  fetch('http://localhost:3000/api/users', {
+  fetchData('http://localhost:3000/api/users', {
     method: 'POST',
     headers: {
       'Content-type': 'application/json'
     },
-    body: JSON.stringify(studentObj)
+    body: JSON.stringify(student)
   })
-    .then((res) => {
-      if (!res.ok) {
-        console.log('ERROR!');
-      }
-      return res.json();
-    })
     .then((data) => {
-      console.log(data.message);
-      tbody.append(getStudentItem(data.user[0]));
+      tbody.insertAdjacentHTML('beforeend', createStudentRow(data.user[0]));
+      form.reset();
+      showSuccessNotification();
     })
     .catch((error) => {
       console.log(error);
+      showErrorNotification();
     });
-
-  const inputFields = [
-    firstNameInput,
-    lastNameInput,
-    patronimicInput,
-    birthdayInput,
-    admissionInput,
-    facultyInput
-  ];
-  inputFields.forEach((inputField) => {
-    inputField.value = '';
-  });
 });
 
-// SORTING
 const headers = document.querySelectorAll('th');
 const directions = Array.from(headers).map(() => '');
 let order = 1;
-
-headers.forEach((header) => {
-  header.addEventListener('click', () => {
-    const columnIndex = Array.from(headers).indexOf(header);
-    fetch('http://localhost:3000/api/users', { method: 'GET' })
-      .then((res) => res.json())
-      .then((data) => {
-        data.sort((rowA, rowB) => {
-          let property;
-          switch (columnIndex) {
-            case 0:
-              property = 'id';
-              break;
-            case 1:
-              property = 'name';
-              break;
-            case 2:
-              property = 'birthday';
-              break;
-            case 3:
-              property = 'admission';
-              break;
-            case 4:
-              property = 'faculty';
-              break;
-            default:
-          }
-          let cellA = rowA[property];
-          let cellB = rowB[property];
-          if (property === 'name') {
-            cellA = `${rowA.firstname} ${rowA.patronimic} ${rowA.lastname}`;
-            cellB = `${rowB.firstname} ${rowB.patronimic} ${rowB.lastname}`;
-          }
-          directions[columnIndex] = order === 1 ? 'asc' : 'desc';
-          if (property === 'id') {
-            return cellA - cellB > 0 ? -order : order;
-          }
-          return cellA.localeCompare(cellB) > 0 ? order : -order;
-        });
-        order *= -1;
-        tbody.innerHTML = '';
-        renderStudentsTable(data);
-      })
-      .catch((error) => {
-        console.log(error);
+const handleHeaderClick = (event) => {
+  const th = event.target;
+  const columnIndex = Array.from(th.parentNode.children).indexOf(th);
+  fetchData(`http://localhost:3000/api/users`)
+    .then((data) => {
+      data.sort((rowA, rowB) => {
+        let property;
+        switch (columnIndex) {
+          case 0:
+            property = 'id';
+            break;
+          case 1:
+            property = 'name';
+            break;
+          case 2:
+            property = 'birthday';
+            break;
+          case 3:
+            property = 'admission';
+            break;
+          case 4:
+            property = 'faculty';
+            break;
+          default:
+        }
+        let cellA = rowA[property];
+        let cellB = rowB[property];
+        if (property === 'name') {
+          cellA = `${rowA.firstname} ${rowA.patronimic} ${rowA.lastname}`;
+          cellB = `${rowB.firstname} ${rowB.patronimic} ${rowB.lastname}`;
+        }
+        directions[columnIndex] = order === 1 ? 'asc' : 'desc';
+        if (property === 'id') {
+          return cellA - cellB > 0 ? -order : order;
+        }
+        return cellA.localeCompare(cellB) > 0 ? order : -order;
       });
-  });
+      order *= -1;
+      tbody.innerHTML = '';
+      renderStudentsTable(data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+Array.from(document.querySelectorAll('th')).forEach((header) => {
+  header.addEventListener('click', handleHeaderClick);
 });
+
+filterSelect.addEventListener('change', handleFilterChange);
+filterInput.addEventListener('input', handleFilterInput);
+
+// Initialization
+fetchStudents();
+setInputMaxDates();
