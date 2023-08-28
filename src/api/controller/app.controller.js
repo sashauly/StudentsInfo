@@ -1,4 +1,4 @@
-import pool from '../utils/database';
+import pool from '../utils/database.js';
 
 const dbname = 'students_info';
 
@@ -61,7 +61,7 @@ const updateUser = (req, res) => {
 const deleteUser = (req, res, next) => {
   const { id } = req.params;
   pool.query(`DELETE FROM ${dbname} WHERE id = $1`, [id], (error, result) => {
-    if (result.rows.length) {
+    if (result.rowCount === 0) {
       res.status(404).json({ message: 'User not found!' });
       next(error);
     }

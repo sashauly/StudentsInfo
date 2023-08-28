@@ -61,18 +61,27 @@ const createStudentRow = ({
   return `
     <tr>
       <th scope="row">${id}</th>
-      <td>${firstname} ${patronimic} ${lastname}</td>
+      <td>${firstname} ${lastname} ${patronimic}</td>
       <td>${dateBirth.toLocaleDateString('ru-RU')} (${age} y.o.)</td>
       <td>${dateAdmission.getFullYear()} - ${
         dateAdmission.getFullYear() + 4
       } (${checkGraduation})</td>
       <td>${faculty}</td>
+      <td>
+        <button onclick="editStudent(${id})" class="btn btn-info">Edit</button>
+        <button onclick="deleteStudent(${id})" class="btn btn-danger">Delete</button>
+      </td>
     </tr>
   `;
 };
 
 const renderStudentsTable = (students) => {
-  tbody.innerHTML = students.map(createStudentRow).join('');
+  if (students.length === 0) {
+    tbody.innerHTML =
+      '<tr><td colspan="5" style="text-align: center;">No data available</td></tr>';
+  } else {
+    tbody.innerHTML = students.map(createStudentRow).join('');
+  }
 };
 
 const fetchData = async (url) => {
@@ -85,9 +94,55 @@ const fetchData = async (url) => {
 };
 
 const fetchStudents = () => {
+  tbody.innerHTML =
+    '<tr id="placeholder-row"><td colspan="5" style="text-align: center;">Fetching data...</td></tr>';
+
   fetchData('http://localhost:3000/api/users')
     .then((students) => {
       renderStudentsTable(students);
+    })
+    .catch((error) => {
+      console.error(error);
+      tbody.innerHTML =
+        '<tr><td colspan="5" style="text-align: center;">Error fetching data</td></tr>';
+    });
+};
+
+const updateStudent = (student) => {
+  fetch(`http://localhost:3000/api/users/${student.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(student)
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(() => {
+      fetchStudents();
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+const deleteStudent = (id) => {
+  fetch(`http://localhost:3000/api/users/${id}`, {
+    method: 'DELETE'
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      console.log(response);
+      return response.json();
+    })
+    .then(() => {
+      fetchStudents();
     })
     .catch((error) => {
       console.error(error);
@@ -111,7 +166,9 @@ const successNotificationStyles = {
   padding: '10px',
   borderRadius: '5px',
   boxShadow: '0 2px 5px rgba(0, 0, 0, 0.3)',
-  zIndex: '9999'
+  zIndex: '9999',
+  opacity: '0',
+  transition: 'opacity 0.3s ease-in-out'
 };
 
 const errorNotificationStyles = {
@@ -123,37 +180,26 @@ const errorNotificationStyles = {
   padding: '10px',
   borderRadius: '5px',
   boxShadow: '0 2px 5px rgba(0, 0, 0, 0.3)',
-  zIndex: '9999'
+  zIndex: '9999',
+  opacity: '0',
+  transition: 'opacity 0.3s ease-in-out'
 };
 
-function createNotification(message, styles) {
+function showNotification(message, styles) {
   const notification = document.createElement('div');
   notification.textContent = message;
   Object.assign(notification.style, styles);
-  return notification;
-}
-
-function showSuccessNotification() {
-  const notification = createNotification(
-    'User successfully added',
-    successNotificationStyles
-  );
   document.body.appendChild(notification);
 
   setTimeout(() => {
-    notification.remove();
-  }, 3000);
-}
-
-function showErrorNotification() {
-  const notification = createNotification(
-    'Error adding user',
-    errorNotificationStyles
-  );
-  document.body.appendChild(notification);
+    notification.style.opacity = '1';
+  }, 100);
 
   setTimeout(() => {
-    notification.remove();
+    notification.style.opacity = '0';
+    setTimeout(() => {
+      notification.remove();
+    }, 300);
   }, 3000);
 }
 
@@ -173,11 +219,11 @@ document.querySelector('form').addEventListener('submit', (event) => {
     .then((data) => {
       tbody.insertAdjacentHTML('beforeend', createStudentRow(data.user[0]));
       form.reset();
-      showSuccessNotification();
+      showNotification('User successfully added', successNotificationStyles);
     })
     .catch((error) => {
       console.log(error);
-      showErrorNotification();
+      showNotification('Error adding user', errorNotificationStyles);
     });
 });
 

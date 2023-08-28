@@ -1,6 +1,6 @@
 import express from 'express';
-import router from './routes/app.routes';
-import cache from './routes/cache.routes';
+import router from './routes/app.routes.js';
+import cache from './routes/cache.routes.js';
 
 const PORT = process.env.PORT || 3000;
 
@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
-app.use(cache(300));
+// app.use(cache(300));
 app.use('/api', router);
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

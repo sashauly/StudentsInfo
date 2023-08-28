@@ -54,6 +54,11 @@ For Mac: `open index.html`
 - Sorting by columns
 - Filter by columns
 
+- Now when i think of this project, several things that needs to be aknowledged.
+  - I didn't use any validation library and stick mainly with REGEX, so it might introduce some problem
+  - Still don't quite understand how works methods of Date, toLocaleString, toUTFString, etc... IN my country format is dd.mm.yyyy; but my laptop seems to be so confused, because here i setup main language as English and now format mm/dd/yyyy. I need to test it in different env, i guess...
+  - This project is evolved from 'basic drawing table from a json data' to 'OMG postgres docker containers submit forms let's do it(why not React though?)'. And it shows. Inputs for name are three different inputs for each part of the fullname, and on the fetch(GET)method I use fetchData() to get it simple. As far as i know it relies heavily on input names and mathc it with names of columns in database. So now i can't just make one input and somehow transfer data further. At least now that simple, i guess. Need to dig in it more later.
+
 ### TODO
 
 - Delete the user
