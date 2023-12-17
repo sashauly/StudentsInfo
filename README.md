@@ -1,24 +1,29 @@
-# data-tables-JS-REST-Postgres
+# StudentsInfo
 
 ![Overview](./img/overview.png)
-> Simple project with my own implemented REST API and Postgresql database.
->
 
 ## Table of contents
 
-- [data-tables-JS-REST-Postgres](#data-tables-js-rest-postgres)
+- [StudentsInfo](#studentsinfo)
+  - [Introduction](#introduction)
+  - [Features](#features)
   - [Table of contents](#table-of-contents)
-  - [General info](#general-info)
   - [Technologies](#technologies)
   - [Setup](#setup)
-  - [Features](#features)
     - [TODO](#todo)
   - [Project status](#project-status)
   - [Contacts](#contacts)
 
-## General info
+# Introduction
 
-Simple project with my own implemented REST API and Postgresql database.
+This project demonstrates how to create a dynamic table using JavaScript DOM manipulation, a RESTful API with Express, and data from a Postgres database. The application retrieves student information from the database and displays it in a table.
+
+## Features
+
+- Dynamic table creation using JavaScript and the DOM
+- Data retrieved from a Postgres database using a REST API
+- Easy-to-understand code structure
+- Modifiable and customizable
 
 ## Technologies
 
@@ -36,7 +41,7 @@ Project is created with:
 
 To run this project, first you need to clone repository:
 
-`git clone git@github.com:sashauly/student-info-js.git`
+`git clone git@github.com:sashauly/StudentsInfo.git`
 
 Then run Docker containers with NodeJS REST API and postgres database:
 
@@ -47,12 +52,6 @@ Then you need to open up an html file in your browser:
 For Linux: `xdg-open index.html`
 
 For Mac: `open index.html`
-
-## Features
-
-- Working with database
-- Sorting by columns
-- Filter by columns
 
 ### TODO
 
